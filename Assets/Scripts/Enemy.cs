@@ -60,7 +60,14 @@ public class Enemy : MonoBehaviour
         Vector3 randomPoint = GetRandomPoint();
         agent.SetDestination(randomPoint);
         Debug.Log(randomPoint);
-        state = EnemyStates.Recovery;
+        if (Vector3.Distance(transform.position, player.position) <= playerSightRange)
+        {
+            state = EnemyStates.Pursue;
+        }
+        else
+        {
+            state = EnemyStates.Recovery;
+        }
     }
 
     void UpdatePursue()
