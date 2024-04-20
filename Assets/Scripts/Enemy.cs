@@ -19,12 +19,13 @@ public class Enemy : MonoBehaviour
     Vector3 origin;
     EnemyStates state = EnemyStates.Recovery;
     NavMeshAgent agent;
-    float wanderRange = 5;
     Vector3 startingLocation;
     float elapsed = 0;
-    float playerSightRange = 5;
-    float playerAttackRange = 2;
-    float recoveryTime = 2;
+
+    [SerializeField] float wanderRange = 5;
+    [SerializeField] float playerSightRange = 5;
+    [SerializeField] float playerAttackRange = 2;
+    [SerializeField] float recoveryTime = 2;
     
     // Start is called before the first frame update
     void Start()
