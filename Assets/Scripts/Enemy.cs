@@ -85,7 +85,9 @@ public class Enemy : MonoBehaviour
 
     void UpdateAttack()
     {
-
+        Rigidbody.AddForce((transform.position - player.position).normalized * 5);
+        Debug.Log("Jeff attacks!");
+        state = EnemyStates.Recovery;
     }
 
     void UpdateRecovery()
