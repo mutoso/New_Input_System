@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     float elapsed = 0;
     float playerSightRange = 5;
     float playerAttackRange = 2;
+    float recoveryTime = 2;
     
     // Start is called before the first frame update
     void Start()
@@ -93,7 +94,7 @@ public class Enemy : MonoBehaviour
     void UpdateRecovery()
     {
         elapsed += Time.deltaTime;
-        if (elapsed > 2) {
+        if (elapsed > recoveryTime) {
             state = EnemyStates.Pursue;
             elapsed = 0;
         }
