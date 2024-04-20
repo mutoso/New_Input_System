@@ -6433,11 +6433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2907611458581148241, guid: 04893e3ecd62fd54bbd633891b596cac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.32
+      value: -1.91
       objectReference: {fileID: 0}
     - target: {fileID: 2907611458581148241, guid: 04893e3ecd62fd54bbd633891b596cac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0.68
       objectReference: {fileID: 0}
     - target: {fileID: 2907611458581148241, guid: 04893e3ecd62fd54bbd633891b596cac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6471,10 +6471,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2907611458581148242, guid: 04893e3ecd62fd54bbd633891b596cac, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2907611458581148244, guid: 04893e3ecd62fd54bbd633891b596cac, type: 3}
       propertyPath: m_Name
       value: Jeff
       objectReference: {fileID: 0}
+    - target: {fileID: 2907611458581148245, guid: 04893e3ecd62fd54bbd633891b596cac, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2071811435}
     - target: {fileID: 2907611458581148245, guid: 04893e3ecd62fd54bbd633891b596cac, type: 3}
       propertyPath: damageNumberPrefab
       value: 

@@ -13,6 +13,8 @@ enum EnemyStates
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] Transform player;
+
     public Rigidbody Rigidbody { get; private set; }
     Vector3 origin;
     EnemyStates state = EnemyStates.Recovery;
@@ -20,6 +22,8 @@ public class Enemy : MonoBehaviour
     float wanderRange = 5;
     Vector3 startingLocation;
     float elapsed = 0;
+    float playerSightRange = 5;
+    float playerAttackRange = 2;
     
     // Start is called before the first frame update
     void Start()
@@ -61,7 +65,15 @@ public class Enemy : MonoBehaviour
 
     void UpdatePursue()
     {
-
+        agent.SetDestination(player.position);
+        if (Vector3.Distance(transform.position, player.position) > playerSightRange)
+        {
+            state = EnemyStates.Wander;
+        }
+        else if (Vector3.Distance(transform.position, player.position) <= playerAttackRange)
+        {
+            state = EnemyStates.Attack;
+        }
     }
 
     void UpdateAttack()
