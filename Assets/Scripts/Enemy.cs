@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
     {
         Vector3 randomPoint = GetRandomPoint();
         agent.SetDestination(randomPoint);
-        Debug.Log(randomPoint);
+        Debug.Log("Wandering to " + randomPoint);
         if (Vector3.Distance(transform.position, player.position) <= playerSightRange)
         {
             state = EnemyStates.Pursue;
