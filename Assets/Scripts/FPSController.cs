@@ -129,14 +129,8 @@ public class FPSController : MonoBehaviour
         if (currentGun == null)
             return;
 
-        // pressed the fire button
-        if(GetPressFire())
-        {
-            currentGun?.AttemptFire();
-        }
-
         // holding the fire button (for automatic)
-        else if(GetHoldFire())
+        if(GetHoldFire())
         {
             if (currentGun.AttemptAutomaticFire())
                 currentGun?.AttemptFire();
@@ -190,9 +184,10 @@ public class FPSController : MonoBehaviour
 
     // Input methods
 
-    bool GetPressFire()
+    // pressed the fire button
+    void OnFire()
     {
-        return Input.GetButtonDown("Fire1");
+        currentGun?.AttemptFire();
     }
 
     bool GetHoldFire()
