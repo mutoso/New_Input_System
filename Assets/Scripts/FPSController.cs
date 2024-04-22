@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FPSController : MonoBehaviour
 {
@@ -25,14 +26,16 @@ public class FPSController : MonoBehaviour
     List<Gun> equippedGuns = new List<Gun>();
     int gunIndex = 0;
     Gun currentGun = null;
+    Vector2 movement;
+
 
     // properties
     public GameObject Cam { get { return cam; } }
-    
+
 
     private void Awake()
     {
-        
+
     }
 
     // Start is called before the first frame update
@@ -42,7 +45,7 @@ public class FPSController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         // start with a gun
-        if(initialGun != null)
+        if (initialGun != null)
             AddGun(initialGun);
 
         origin = transform.position;
@@ -66,18 +69,17 @@ public class FPSController : MonoBehaviour
     {
         grounded = controller.isGrounded;
 
-        if(grounded && velocity.y < 0)
+        if (grounded && velocity.y < 0)
         {
             velocity.y = -1;// -0.5f;
         }
 
-        Vector2 movement = GetPlayerMovementVector();
         Vector3 move = transform.right * movement.x + transform.forward * movement.y;
         controller.Move(move * movementSpeed * (GetSprint() ? 2 : 1) * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && grounded)
         {
-            velocity.y += Mathf.Sqrt (jumpForce * -1 * gravity);
+            velocity.y += Mathf.Sqrt(jumpForce * -1 * gravity);
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -104,7 +106,7 @@ public class FPSController : MonoBehaviour
         if (equippedGuns.Count == 0)
             return;
 
-        if(Input.GetAxis("Mouse ScrollWheel") > 0)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             gunIndex++;
             if (gunIndex > equippedGuns.Count - 1)
@@ -130,7 +132,7 @@ public class FPSController : MonoBehaviour
             return;
 
         // holding the fire button (for automatic)
-        if(GetHoldFire())
+        if (GetHoldFire())
         {
             if (currentGun.AttemptAutomaticFire())
                 currentGun?.AttemptFire();
@@ -200,9 +202,9 @@ public class FPSController : MonoBehaviour
         return Input.GetButtonDown("Fire2");
     }
 
-    Vector2 GetPlayerMovementVector()
+    public void OnMovement(InputValue value)
     {
-        return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        movement = value.Get<Vector2>();
     }
 
     Vector2 GetPlayerLook()
