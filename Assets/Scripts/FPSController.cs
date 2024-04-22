@@ -57,7 +57,7 @@ public class FPSController : MonoBehaviour
         Movement();
         // Look();
         HandleSwitchGun();
-        FireGun();
+        // FireGun();
 
         // always go back to "no velocity"
         // "velocity" is for movement speed that we gain in addition to our movement (falling, knockback, etc.)
@@ -125,20 +125,6 @@ public class FPSController : MonoBehaviour
         }
     }
 
-    void FireGun()
-    {
-        // don't fire if we don't have a gun
-        if (currentGun == null)
-            return;
-
-        // holding the fire button (for automatic)
-        if (GetHoldFire())
-        {
-            if (currentGun.AttemptAutomaticFire())
-                currentGun?.AttemptFire();
-        }
-    }
-
     void EquipGun(Gun g)
     {
         // disable current gun, if there is one
@@ -192,9 +178,11 @@ public class FPSController : MonoBehaviour
         currentGun?.AttemptAltFire();
     }
 
-    bool GetHoldFire()
+    // holding the fire button (for automatic)
+    void OnAutomaticFire()
     {
-        return Input.GetButton("Fire1");
+        if (currentGun && currentGun.AttemptAutomaticFire())
+            currentGun?.AttemptFire();
     }
 
     public void OnMovement(InputValue value)
