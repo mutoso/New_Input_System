@@ -33,6 +33,28 @@ public class FPSController : MonoBehaviour
 
     // properties
     public GameObject Cam { get { return cam; } }
+    public int CurrentAmmo
+    {
+        get
+        {
+            if (currentGun)
+            {
+                return currentGun.Ammo;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        set
+        {
+            if (currentGun)
+            {
+                currentGun.Ammo = value;
+            }
+        }
+    }
+    public int Health { get; set; } = 10;
 
 
     private void Awake()

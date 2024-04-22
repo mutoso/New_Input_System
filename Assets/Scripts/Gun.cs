@@ -21,6 +21,8 @@ public class Gun : MonoBehaviour
     protected int ammo;
     protected float elapsed = 0;
 
+    public int Ammo {  get { return ammo; } set { ammo = value; } }
+
     // Start is called before the first frame update
     void Start()
     {
