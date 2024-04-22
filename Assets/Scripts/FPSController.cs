@@ -55,7 +55,7 @@ public class FPSController : MonoBehaviour
     void Update()
     {
         Movement();
-        Look();
+        // Look();
         HandleSwitchGun();
         FireGun();
 
@@ -87,9 +87,9 @@ public class FPSController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    void Look()
+    void OnLook(InputValue value)
     {
-        Vector2 looking = GetPlayerLook();
+        Vector2 looking = value.Get<Vector2>();
         float lookX = looking.x * lookSensitivityX * Time.deltaTime;
         float lookY = looking.y * lookSensitivityY * Time.deltaTime;
 
@@ -205,11 +205,6 @@ public class FPSController : MonoBehaviour
     public void OnMovement(InputValue value)
     {
         movement = value.Get<Vector2>();
-    }
-
-    Vector2 GetPlayerLook()
-    {
-        return new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
     }
 
     bool GetSprint()
