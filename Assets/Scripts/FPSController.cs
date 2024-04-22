@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 public class FPSController : MonoBehaviour
@@ -57,7 +58,7 @@ public class FPSController : MonoBehaviour
     {
         Movement();
         // Look();
-        HandleSwitchGun();
+        // HandleSwitchGun();
         // FireGun();
 
         // always go back to "no velocity"
@@ -97,12 +98,12 @@ public class FPSController : MonoBehaviour
         transform.Rotate(Vector3.up * lookX);
     }
 
-    void HandleSwitchGun()
+    void OnSwitchGun(InputValue value)
     {
         if (equippedGuns.Count == 0)
             return;
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        if (value.Get<float>() > 0)
         {
             gunIndex++;
             if (gunIndex > equippedGuns.Count - 1)
@@ -111,7 +112,7 @@ public class FPSController : MonoBehaviour
             EquipGun(equippedGuns[gunIndex]);
         }
 
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        else if (value.Get<float>() < 0)
         {
             gunIndex--;
             if (gunIndex < 0)
