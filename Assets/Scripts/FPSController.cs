@@ -78,11 +78,6 @@ public class FPSController : MonoBehaviour
         Vector3 move = transform.right * movement.x + transform.forward * movement.y;
         controller.Move(move * movementSpeed * (isSprinting ? 2 : 1) * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && grounded)
-        {
-            velocity.y += Mathf.Sqrt(jumpForce * -1 * gravity);
-        }
-
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
@@ -194,6 +189,14 @@ public class FPSController : MonoBehaviour
     void OnSprint()
     {
         isSprinting = !isSprinting;
+    }
+
+    void OnJump()
+    {
+        if (grounded)
+        {
+            velocity.y += Mathf.Sqrt(jumpForce * -1 * gravity);
+        }
     }
 
     // Collision methods
