@@ -27,6 +27,7 @@ public class FPSController : MonoBehaviour
     int gunIndex = 0;
     Gun currentGun = null;
     Vector2 movement;
+    bool isSprinting = false;
 
 
     // properties
@@ -75,7 +76,7 @@ public class FPSController : MonoBehaviour
         }
 
         Vector3 move = transform.right * movement.x + transform.forward * movement.y;
-        controller.Move(move * movementSpeed * (GetSprint() ? 2 : 1) * Time.deltaTime);
+        controller.Move(move * movementSpeed * (isSprinting ? 2 : 1) * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && grounded)
         {
@@ -190,9 +191,9 @@ public class FPSController : MonoBehaviour
         movement = value.Get<Vector2>();
     }
 
-    bool GetSprint()
+    void OnSprint()
     {
-        return Input.GetButton("Sprint");
+        isSprinting = !isSprinting;
     }
 
     // Collision methods
